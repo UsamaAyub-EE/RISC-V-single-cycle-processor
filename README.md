@@ -1,2 +1,1 @@
-# RISC-V-single-cycle-processor
-A RISC-V single cycle processor.
+This is a single cycle processor based on RISC-V architecture. It's instruction memory contains machine code that will compute the GCD of two numbers. The numbers can be entered using input switches on an FPGA board and the GCD will be displayed on seven segment displays. This particular code has been designed for Nexys A-7 board.
