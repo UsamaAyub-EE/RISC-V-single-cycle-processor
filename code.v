@@ -452,7 +452,7 @@ MemRead,output reg [3:0] ALU_Sel,output [1:0] immsrc,output reg [2:0] instr_type
     assign ResultSrc = (opcode == 7'b0000011);
     always @(opcode or func3 or func7)
     begin
-        case({opcode,func3,func7})
+        casex({opcode,func3,func7})
             17'b01100110000000000: ALU_Sel = 4'b0000; // ADD
             17'b0010011000xxxxxxx: ALU_Sel = 4'b0000; // ADDI
             17'b01100110000100000: ALU_Sel = 4'b0001; // SUB
@@ -478,7 +478,7 @@ module CompareAndBranch(input [31:0] Port_A,input [31:0] Port_B,input [2:0] inst
     assign neg_flag = temp[31];
     always @(*)
     begin
-        case({instr_type,func3})
+        casex({instr_type,func3})
             6'b011xxx: PCSrc = 1;   //J type instruction
             6'b010000: PCSrc = zero_flag; //BEQ
             6'b010001: PCSrc = ~zero_flag; //BNE
