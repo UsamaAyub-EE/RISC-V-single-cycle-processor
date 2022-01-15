@@ -161,7 +161,7 @@ always @(posedge clk)
         4'b0111: LED_out = 7'b0001111; // "7" 
         4'b1000: LED_out = 7'b0000000; // "8"     
         4'b1001: LED_out = 7'b0000100; // "9"
-		4'b1010: LED_out = 7'b0001000; // "A"     
+	4'b1010: LED_out = 7'b0001000; // "A"     
         4'b1011: LED_out = 7'b1100000; // "b"     
         4'b1100: LED_out = 7'b0110001; // "C"     
         4'b1101: LED_out = 7'b1000010; // "d"     
@@ -186,7 +186,7 @@ always @(posedge clk)
         4'b0111: LED_out = 7'b0001111; // "7" 
         4'b1000: LED_out = 7'b0000000; // "8"     
         4'b1001: LED_out = 7'b0000100; // "9"
-		4'b1010: LED_out = 7'b0001000; // "A"     
+	4'b1010: LED_out = 7'b0001000; // "A"     
         4'b1011: LED_out = 7'b1100000; // "b"     
         4'b1100: LED_out = 7'b0110001; // "C"     
         4'b1101: LED_out = 7'b1000010; // "d"     
@@ -208,7 +208,7 @@ always @(posedge clk)
         4'b0111: LED_out = 7'b0001111; // "7" 
         4'b1000: LED_out = 7'b0000000; // "8"     
         4'b1001: LED_out = 7'b0000100; // "9"
-		4'b1010: LED_out = 7'b0001000; // "A"     
+	4'b1010: LED_out = 7'b0001000; // "A"     
         4'b1011: LED_out = 7'b1100000; // "b"     
         4'b1100: LED_out = 7'b0110001; // "C"     
         4'b1101: LED_out = 7'b1000010; // "d"     
@@ -230,7 +230,7 @@ always @(posedge clk)
         4'b0111: LED_out = 7'b0001111; // "7" 
         4'b1000: LED_out = 7'b0000000; // "8"     
         4'b1001: LED_out = 7'b0000100; // "9"
-		4'b1010: LED_out = 7'b0001000; // "A"     
+	4'b1010: LED_out = 7'b0001000; // "A"     
         4'b1011: LED_out = 7'b1100000; // "b"     
         4'b1100: LED_out = 7'b0110001; // "C"     
         4'b1101: LED_out = 7'b1000010; // "d"     
@@ -252,7 +252,7 @@ always @(posedge clk)
         4'b0111: LED_out = 7'b0001111; // "7" 
         4'b1000: LED_out = 7'b0000000; // "8"     
         4'b1001: LED_out = 7'b0000100; // "9"
-		4'b1010: LED_out = 7'b0001000; // "A"     
+	4'b1010: LED_out = 7'b0001000; // "A"     
         4'b1011: LED_out = 7'b1100000; // "b"     
         4'b1100: LED_out = 7'b0110001; // "C"     
         4'b1101: LED_out = 7'b1000010; // "d"     
@@ -274,7 +274,7 @@ always @(posedge clk)
         4'b0111: LED_out = 7'b0001111; // "7" 
         4'b1000: LED_out = 7'b0000000; // "8"     
         4'b1001: LED_out = 7'b0000100; // "9"
-		4'b1010: LED_out = 7'b0001000; // "A"     
+	4'b1010: LED_out = 7'b0001000; // "A"     
         4'b1011: LED_out = 7'b1100000; // "b"     
         4'b1100: LED_out = 7'b0110001; // "C"     
         4'b1101: LED_out = 7'b1000010; // "d"     
@@ -403,7 +403,7 @@ module register_file(Port_A, Port_B, Din, Addr_A, Addr_B, Addr_Wr, RegWrite,clk,
 
 	// Write your code here 
 	initial begin
-	   Reg_File[0]=32'b0;
+		Reg_File[0]=32'b0;//x0 hardwired to zero
 	end
 	integer i;
 	assign Port_A = Reg_File[Addr_A];
@@ -419,7 +419,7 @@ module register_file(Port_A, Port_B, Din, Addr_A, Addr_B, Addr_Wr, RegWrite,clk,
           end
 	   end
 	   else if(RegWrite==1 && Addr_Wr!=0)
-	   begin
+	   begin//ignore writes to x0
 	       Reg_File[Addr_Wr] = Din;
 	   end
 	end
@@ -491,16 +491,6 @@ module CompareAndBranch(input [31:0] Port_A,input [31:0] Port_B,input [2:0] inst
     
 endmodule
 
-// General Module of two input (5 bit) multiplexer. This multiplexer will be connected with ALU control signals
-module mux(o,a,b, sel);
-    input [4:0] a,b;			// 5 bit inputs
-	input sel;					// selection signal
-    output [4:0] o;			// 5 bit output
-
-	// write your code here!
-	assign o = sel ? a:b;
-	
-endmodule
 
 // A two by one 32 bit multiplexer (to select the branch instruction)
 module mux2x1(output [31:0]o,		// 32 bit output
